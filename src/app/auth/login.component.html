@@ -1,0 +1,4 @@
+<mat-card>
+  <button *ngIf="isLoggedIn" mat-raised-button (click)="logout()">Logout</button>
+  <button *ngIf="!isLoggedIn" mat-raised-button (click)="login()">Login</button>
+</mat-card>
