@@ -13,8 +13,9 @@ import {AuthConfig} from './auth/auth.config';
 import {AuthInterceptor} from './auth/auth.interceptor';
 
 const appRoutes: Routes = [
+  {path: 'search', component: SearchComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full'}
+  {path: '', redirectTo: 'search', pathMatch: 'full'}
 ];
 
 @NgModule({
