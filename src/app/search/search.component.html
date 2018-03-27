@@ -1,3 +1,44 @@
-<ul *ngIf="activities">
-  <li *ngFor="let activity of activities">{{activity.name}}</li>
-</ul>
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" class="example-table"
+             matSort matSortActive="start_date" matSortDisableClear matSortDirection="desc">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="start_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>start_date</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.start_date | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="distance">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>distance</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.distance }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="moving_time">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>moving_time</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.moving_time }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total_elevation_gain">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>total_elevation_gain</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.total_elevation_gain }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+</div>
+
+

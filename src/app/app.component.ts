@@ -10,4 +10,14 @@ export class AppComponent {
 
   constructor(private authService: AuthService) {
   }
+
+  public logout() {
+    this.authService.logout();
+    // this.router.navigate(['/login']);
+    window.location.reload();
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
 }

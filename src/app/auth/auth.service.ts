@@ -24,6 +24,14 @@ export class AuthService {
       + '&code=' + code, {});
   }
 
+  public logout() {
+    localStorage.removeItem('token');
+  }
+
+  public isLoggedIn(): boolean {
+    return this.getToken() != null;
+  }
+
   public getToken(): string {
     return localStorage.getItem('token');
   }
@@ -32,7 +40,4 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  public hasToken(): boolean {
-    return this.getToken() != null;
-  }
 }
