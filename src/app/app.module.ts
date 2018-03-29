@@ -12,6 +12,7 @@ import {AuthService} from './auth/auth.service';
 import {AuthConfig} from './auth/auth.config';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchComponent},
@@ -41,11 +42,9 @@ const appRoutes: Routes = [
     MatSortModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: LocationStrategy, useClass: PathLocationStrategy},
+    Location,
     HttpClientModule,
     AuthService,
     AuthConfig
