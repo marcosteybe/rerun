@@ -1,0 +1,45 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  position: relative;
+}
+
+.app-table {
+  overflow: auto;
+  min-height: 500px;
+}
+
+//.app-header {
+//  min-height: 64px;
+//  display: flex;
+//  align-items: center;
+//  padding-left: 24px;
+//  font-size: 20px;
+//}
+
+.app-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Column Widths */
+.mat-column-distance,
+.mat-column-duration,
+.mat-column-pace,
+.mat-column-elevation,
+.mat-column-suffer_score {
+  max-width: 85px;
+}
+
+.mat-column-date {
+  max-width: 150px;
+}

@@ -4,13 +4,13 @@ import {SearchService} from './search.service';
 
 @Component({
   selector: 'app-search',
-  styleUrls: ['search.component.css'],
+  styleUrls: ['search.component.scss'],
   templateUrl: 'search.component.html',
   providers: [SearchService]
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
-  displayedColumns = ['start_date', 'name', 'distance', 'moving_time', 'total_elevation_gain'];
+  displayedColumns = ['date', 'name', 'distance', 'duration', 'pace', 'elevation', 'suffer_score'];
   dataSource = new MatTableDataSource();
 
   resultsLength = 0;
