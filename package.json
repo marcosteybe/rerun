@@ -1,5 +1,5 @@
 {
-  "name": "strava-search",
+  "name": "my-activities",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/strava-search/\" && ngh --no-silent --message=\"publishing\""
+    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && ngh --no-silent --message=\"publishing\""
   },
   "private": true,
   "dependencies": {

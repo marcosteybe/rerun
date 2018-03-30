@@ -1,6 +1,6 @@
-import { AppPage } from './app.po';
+import {AppPage} from './app.po';
 
-describe('strava-search App', () => {
+describe('my-activities App', () => {
   let page: AppPage;
 
   beforeEach(() => {
