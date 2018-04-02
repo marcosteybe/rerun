@@ -25,27 +25,20 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loadingActivities = true;
-    this.stravaService.athlete()
-      .mergeMap(athlete => {
-        console.log(athlete.created_at);
-        let from: number = new Date(athlete.created_at).getTime();
-        let to: number = new Date().getTime();
-        return this.stravaService.listActivities(from, to);
-      })
-      .subscribe(
-        activities => {
-          this.loadingActivities = false;
-          this.numberOfActivities = activities.length;
-          this.activities = JSON.parse(JSON.stringify(activities));
-          this.dataSource.data = activities;
-        },
-        error => {
-          console.error('error loading activities', error);
-          this.loadingActivities = false;
-          this.numberOfActivities = 0;
-          this.activities = [];
-          this.dataSource.data = [];
-        });
+    this.stravaService.listActivities().subscribe(
+      activities => {
+        this.loadingActivities = false;
+        this.numberOfActivities = activities.length;
+        this.activities = JSON.parse(JSON.stringify(activities));
+        this.dataSource.data = activities;
+      },
+      error => {
+        console.error('error loading activities', error);
+        this.loadingActivities = false;
+        this.numberOfActivities = 0;
+        this.activities = [];
+        this.dataSource.data = [];
+      });
   }
 
   /**
