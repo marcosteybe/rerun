@@ -1,16 +1,17 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {SearchService} from './search.service';
+import {StravaService} from './strava.service';
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
   selector: 'app-search',
   styleUrls: ['search.component.scss'],
   templateUrl: 'search.component.html',
-  providers: [SearchService]
+  providers: [StravaService]
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['date', 'name', 'distance', 'duration', 'pace', 'elevation', 'suffer_score'];
+  public displayedColumns = ['start_date', 'name', 'distance', 'moving_time', 'pace', 'total_elevation_gain', 'suffer_score'];
   public dataSource = new MatTableDataSource();
   public numberOfActivities = 0;
   public activities: any[] = [];
@@ -19,25 +20,32 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private searchService: SearchService) {
+  constructor(private stravaService: StravaService) {
   }
 
   ngOnInit() {
     this.loadingActivities = true;
-    this.searchService.listActivities().subscribe(
-      activities => {
-        this.loadingActivities = false;
-        this.numberOfActivities = activities.length;
-        this.activities = JSON.parse(JSON.stringify(activities));
-        this.dataSource.data = activities;
-      },
-      error => {
-        console.error('error loading activities', error);
-        this.loadingActivities = false;
-        this.numberOfActivities = 0;
-        this.activities = [];
-        this.dataSource.data = [];
-      });
+    this.stravaService.athlete()
+      .mergeMap(athlete => {
+        console.log(athlete.created_at);
+        let from: number = new Date(athlete.created_at).getTime();
+        let to: number = new Date().getTime();
+        return this.stravaService.listActivities(from, to);
+      })
+      .subscribe(
+        activities => {
+          this.loadingActivities = false;
+          this.numberOfActivities = activities.length;
+          this.activities = JSON.parse(JSON.stringify(activities));
+          this.dataSource.data = activities;
+        },
+        error => {
+          console.error('error loading activities', error);
+          this.loadingActivities = false;
+          this.numberOfActivities = 0;
+          this.activities = [];
+          this.dataSource.data = [];
+        });
   }
 
   /**
@@ -46,9 +54,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sortingDataAccessor = (activity: any, column: string) => {
+      switch (column) {
+        case 'pace':
+          return activity.moving_time / activity.distance;
+        default:
+          return activity[column];
+      }
+    };
   }
 
-  filterByDistance(distance: string) {
+  public filterByDistance(distance: string) {
     if (distance == null) {
       return;
     }
@@ -73,13 +89,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
       distanceFrom = tmp;
     }
     if (distanceFrom == distanceTo) {
-      distanceFrom *= 0.95;
-      distanceTo *= 1.05;
+      distanceFrom *= 0.9;
+      distanceTo *= 1.1;
     }
     console.debug('filtering from', distanceFrom, 'to', distanceTo);
     this.dataSource.data = this.activities.filter((activity: any) => {
       let distance: number = activity.distance / 1000;
       return distance >= distanceFrom && distance <= distanceTo;
     });
+  }
+
+  public trackById(index: number, item: any) {
+    return item.id;
   }
 }
