@@ -6,15 +6,6 @@ import {MaterialModule} from './material.module';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './auth/login.component';
-import {
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatPaginatorModule,
-  MatProgressSpinnerModule,
-  MatSortModule,
-  MatTableModule
-} from '@angular/material';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthService} from './auth/auth.service';
 import {AuthConfig} from './auth/auth.config';
@@ -39,17 +30,9 @@ const appRoutes: Routes = [
     RouterModule,
     FormsModule,
     MaterialModule,
-    MatCardModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-
-    BrowserAnimationsModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatFormFieldModule
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
