@@ -44,7 +44,8 @@
     <ng-container matColumnDef="pace">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pace</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span>{{ (row.moving_time / row.distance * 1000000) | date:'m:ss':'UTC' }}</span>
+        <span *ngIf="row.distance">{{ (row.moving_time / row.distance * 1000000) | date:'m:ss':'UTC' }}</span>
+        <span *ngIf="!row.distance">-</span>
         <span class="mat-body-2">/km</span>
       </mat-cell>
     </ng-container>
