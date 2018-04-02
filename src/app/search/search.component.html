@@ -18,8 +18,9 @@
     <ng-container matColumnDef="start_date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span>{{ row.start_date | date:'EEEEEE, dd.MM.yyyy' }}</span>
-        <span class="mat-body-2">{{ row.start_date | date:'HH:mm' }}</span>
+        <span class="desktop-only">{{ row.start_date | date:'EEEEEE, dd.MM.yyyy' }}</span>
+        <span class="mobile-only">{{ row.start_date | date:'d.M.yy' }}</span>
+        <span class="mat-body-2 desktop-only">{{ row.start_date | date:'HH:mm' }}</span>
       </mat-cell>
     </ng-container>
 
@@ -31,8 +32,11 @@
     <ng-container matColumnDef="distance">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Distance</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span>{{ (row.distance / 1000) | number:'1.1-1' }}</span>
-        <span class="mat-body-2">km</span>
+        <ng-template [ngIf]="row.distance">
+          <span>{{ (row.distance / 1000) | number:'1.1-1' }}</span>
+          <span class="mat-body-2 desktop-only">km</span>
+        </ng-template>
+        <span *ngIf="!row.distance">-</span>
       </mat-cell>
     </ng-container>
 
@@ -44,24 +48,32 @@
     <ng-container matColumnDef="pace">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pace</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <span *ngIf="row.distance">{{ (row.moving_time / row.distance * 1000000) | date:'m:ss':'UTC' }}</span>
+        <ng-template [ngIf]="row.distance">
+          <span>{{ (row.moving_time / row.distance * 1000000) | date:'m:ss':'UTC' }}</span>
+          <span class="mat-body-2 desktop-only">/km</span>
+        </ng-template>
         <span *ngIf="!row.distance">-</span>
-        <span class="mat-body-2">/km</span>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="total_elevation_gain">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Elevation</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <span class="mat-body-2">+</span>
-        <span>{{ row.total_elevation_gain }}</span>
-        <span class="mat-body-2">m</span>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="desktop-only">Elevation</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="desktop-only">
+        <ng-template [ngIf]="row.total_elevation_gain">
+          <span class="mat-body-2">+</span>
+          <span>{{ row.total_elevation_gain }}</span>
+          <span class="mat-body-2">m</span>
+        </ng-template>
+        <span *ngIf="!row.total_elevation_gain">-</span>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="suffer_score">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Suffer Score</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.suffer_score }}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="desktop-only">Suffer Score</mat-header-cell>
+      <mat-cell *matCellDef="let row" class="desktop-only">
+        <span *ngIf="row.suffer_score">{{ row.suffer_score }}</span>
+        <span *ngIf="!row.suffer_score">-</span>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

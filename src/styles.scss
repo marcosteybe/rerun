@@ -4,3 +4,22 @@
   font-size: 12px;
   font-weight: 300;
 }
+
+.desktop-only {
+  display: unset;
+}
+
+.mobile-only {
+  display: none;
+}
+
+// breakpoint according to https://github.com/angular/flex-layout/wiki/Responsive-API
+@media screen and (max-width: 599px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: unset;
+  }
+}
+
