@@ -16,6 +16,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public numberOfActivities = 0;
   public activities: any[] = [];
   public loadingActivities = true;
+  public distanceFilter: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -55,6 +56,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
           return activity[column];
       }
     };
+  }
+
+  public clearFilter() {
+    this.distanceFilter = null;
+    this.dataSource.data = this.activities;
   }
 
   public filterByDistance(distance: string) {
