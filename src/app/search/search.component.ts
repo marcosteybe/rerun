@@ -11,7 +11,7 @@ import 'rxjs/add/operator/mergeMap';
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['start_date', 'name', 'distance', 'moving_time', 'pace', 'total_elevation_gain', 'suffer_score'];
+  public displayedColumns = ['start_date', 'name', 'distance', 'moving_time', 'pace', 'total_elevation_gain', 'suffer_score', 'details'];
   public dataSource = new MatTableDataSource();
   public numberOfActivities = 0;
   public activities: any[] = [];

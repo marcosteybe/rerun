@@ -36,7 +36,8 @@
 .mat-column-moving_time,
 .mat-column-pace,
 .mat-column-total_elevation_gain,
-.mat-column-suffer_score {
+.mat-column-suffer_score,
+.mat-column-details {
   max-width: 85px;
 }
 
@@ -51,7 +52,8 @@
     max-width: 75px;
   }
 
-  .mat-column-pace {
+  .mat-column-pace,
+  .mat-column-details {
     max-width: 45px;
   }
 
