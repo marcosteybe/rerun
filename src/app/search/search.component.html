@@ -5,7 +5,7 @@
 
   <div class="app-header">
     <mat-form-field>
-      <input matInput (keyup)="filterByDistance(distanceFilter)" [(ngModel)]="distanceFilter" placeholder="Distance">
+      <input matInput (keyup)="filterByDistance(distanceFilter)" [(ngModel)]="distanceFilter" placeholder="Filter by distance">
       <button mat-button *ngIf="distanceFilter" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
         <mat-icon>close</mat-icon>
       </button>
@@ -35,11 +35,11 @@
     <ng-container matColumnDef="distance">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Distance</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <ng-template [ngIf]="row.distanceFilter">
-          <span>{{ (row.distanceFilter / 1000) | number:'1.1-1' }}</span>
+        <ng-template [ngIf]="row.distance">
+          <span>{{ (row.distance / 1000) | number:'1.1-1' }}</span>
           <span class="mat-body-2 desktop-only">km</span>
         </ng-template>
-        <span *ngIf="!row.distanceFilter">-</span>
+        <span *ngIf="!row.distance">-</span>
       </mat-cell>
     </ng-container>
 
@@ -51,11 +51,11 @@
     <ng-container matColumnDef="pace">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pace</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <ng-template [ngIf]="row.distanceFilter">
-          <span>{{ (row.moving_time / row.distanceFilter * 1000000) | date:'m:ss':'UTC' }}</span>
+        <ng-template [ngIf]="row.distance">
+          <span>{{ (row.moving_time / row.distance * 1000000) | date:'m:ss':'UTC' }}</span>
           <span class="mat-body-2 desktop-only">/km</span>
         </ng-template>
-        <span *ngIf="!row.distanceFilter">-</span>
+        <span *ngIf="!row.distance">-</span>
       </mat-cell>
     </ng-container>
 

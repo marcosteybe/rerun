@@ -21,6 +21,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+
   constructor(private stravaService: StravaService) {
   }
 
@@ -63,12 +64,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.dataSource.data = this.activities;
   }
 
-  public filterByDistance(distance: string) {
-    if (distance == null) {
+  public filterByDistance(distanceFilter: string) {
+    if (distanceFilter == null) {
       return;
     }
 
-    let parts: string[] = distance.split('-');
+    let parts: string[] = distanceFilter.split('-');
     let distanceFrom: number = parts[0] ? Number(parts[0].trim()) : NaN;
     let distanceTo: number = parts[1] ? Number(parts[1].trim()) : NaN;
 
