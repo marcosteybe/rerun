@@ -1,7 +1,9 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import 'rxjs/add/operator/mergeMap';
+import {forkJoin} from 'rxjs/observable/forkJoin';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -16,23 +18,62 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public numberOfActivities = 0;
   public activities: any[] = [];
   public loadingActivities = true;
+  private allActivitiesLoaded = false;
+
   public distanceFilter: string;
+  private distanceFilterSubject: Subject<string> = new Subject();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   constructor(private stravaService: StravaService) {
+    this.distanceFilterSubject
+      .pipe(debounceTime(200), distinctUntilChanged())
+      .subscribe(searchTextValue => {
+        this.filterByDistance(searchTextValue);
+      });
   }
 
   ngOnInit() {
+    this.loadInitialActivities();
+  }
+
+  loadInitialActivities() {
+    this.allActivitiesLoaded = false;
     this.loadingActivities = true;
-    this.stravaService.listActivities().subscribe(
+    this.stravaService.listInitialActivities().subscribe(
       activities => {
         this.loadingActivities = false;
         this.numberOfActivities = activities.length;
         this.activities = JSON.parse(JSON.stringify(activities));
         this.dataSource.data = activities;
+      },
+      error => {
+        console.error('error loading activities', error);
+        this.loadingActivities = false;
+        this.numberOfActivities = 0;
+        this.activities = [];
+        this.dataSource.data = [];
+      });
+  }
+
+  loadAllActivities() {
+    this.loadingActivities = true;
+
+    const pageSize = 100;
+    const numberOfPages = 10;
+    const pages = Array.from(Array(numberOfPages).keys());
+
+    const observables = pages.map(page => this.stravaService.listActivities(page + 1, pageSize));
+    forkJoin(...observables).subscribe(
+      nestedActivities => {
+        const activities = [].concat(...nestedActivities);
+        console.log(activities);
+        this.loadingActivities = false;
+        this.numberOfActivities = activities.length;
+        this.activities = JSON.parse(JSON.stringify(activities));
+        this.dataSource.data = activities;
+        this.allActivitiesLoaded = true;
       },
       error => {
         console.error('error loading activities', error);
@@ -64,9 +105,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.dataSource.data = this.activities;
   }
 
+  public filterByDistanceKeyUp(searchTextValue: string) {
+    this.distanceFilterSubject.next(searchTextValue);
+  }
+
   public filterByDistance(distanceFilter: string) {
     if (distanceFilter == null) {
       return;
+    }
+
+    if (!this.allActivitiesLoaded) {
+      this.loadAllActivities();
     }
 
     let parts: string[] = distanceFilter.split('-');

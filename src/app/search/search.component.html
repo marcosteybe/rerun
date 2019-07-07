@@ -5,7 +5,7 @@
 
   <div class="app-header">
     <mat-form-field>
-      <input matInput (keyup)="filterByDistance(distanceFilter)" [(ngModel)]="distanceFilter" placeholder="Filter by distance">
+      <input matInput (keyup)="filterByDistanceKeyUp(distanceFilter)" [(ngModel)]="distanceFilter" placeholder="Filter by distance">
       <button mat-button *ngIf="distanceFilter" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
         <mat-icon>close</mat-icon>
       </button>
