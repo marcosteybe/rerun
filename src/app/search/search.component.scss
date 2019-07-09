@@ -16,6 +16,10 @@
   align-items: center;
   padding-left: 24px;
   font-size: 20px;
+
+  .mat-form-field {
+    margin-right: 24px;
+  }
 }
 
 .app-loading-shade {

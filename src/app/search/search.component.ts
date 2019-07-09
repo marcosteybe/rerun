@@ -4,6 +4,8 @@ import {StravaService} from './strava.service';
 import {forkJoin} from 'rxjs/observable/forkJoin';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {MyLocation} from '../model/mylocation';
+import {Activity} from '../model/activity';
 
 @Component({
   selector: 'app-search',
@@ -23,6 +25,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public distanceFilter: string;
   private distanceFilterSubject: Subject<string> = new Subject();
 
+  public availableLocations: MyLocation[];
+  public locationFilter: MyLocation;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -32,10 +37,21 @@ export class SearchComponent implements OnInit, AfterViewInit {
       .subscribe(searchTextValue => {
         this.filterByDistance(searchTextValue);
       });
+    this.availableLocations = [{
+      viewValue: 'Dällikon',
+      latLong: [47.4416951, 8.4393782]
+    }, {
+      viewValue: 'Förrlibuck',
+      latLong: [47.3915665, 8.5087367]
+    }, {
+      viewValue: 'Ticino',
+      latLong: [46.155042, 8.9954698]
+    }];
   }
 
   ngOnInit() {
-    this.loadInitialActivities();
+    // this.loadInitialActivities();
+    this.loadAllActivities();
   }
 
   loadInitialActivities() {
@@ -90,7 +106,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sortingDataAccessor = (activity: any, column: string) => {
+    this.dataSource.sortingDataAccessor = (activity: Activity, column: string) => {
       switch (column) {
         case 'pace':
           return activity.moving_time / activity.distance;
@@ -100,7 +116,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     };
   }
 
-  public clearFilter() {
+  public clearDistanceFilter() {
     this.distanceFilter = null;
     this.dataSource.data = this.activities;
   }
@@ -112,10 +128,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public filterByDistance(distanceFilter: string) {
     if (distanceFilter == null) {
       return;
-    }
-
-    if (!this.allActivitiesLoaded) {
-      this.loadAllActivities();
     }
 
     let parts: string[] = distanceFilter.split('-');
@@ -142,13 +154,31 @@ export class SearchComponent implements OnInit, AfterViewInit {
       distanceTo *= 1.1;
     }
     console.debug('filtering from', distanceFrom, 'to', distanceTo);
-    this.dataSource.data = this.activities.filter((activity: any) => {
+    this.dataSource.data = this.activities.filter((activity: Activity) => {
       let distance: number = activity.distance / 1000;
       return distance >= distanceFrom && distance <= distanceTo;
     });
   }
 
+  public filterByLocation(selectedLocation: MyLocation) {
+    if (selectedLocation == null) {
+      return;
+    }
+
+    console.debug('filtering to', selectedLocation.viewValue, selectedLocation.latLong);
+    const precision = 0.01;
+    this.dataSource.data = this.activities.filter((activity: Activity) => {
+      return activity.start_latlng != null
+        && SearchComponent.isInRange(selectedLocation.latLong[0], activity.start_latlng[0], precision)
+        && SearchComponent.isInRange(selectedLocation.latLong[1], activity.start_latlng[1], precision);
+    });
+  }
+
   public trackById(index: number, item: any) {
     return item.id;
+  }
+
+  private static isInRange(actual: number, comparable: number, precision: number): boolean {
+    return Math.abs(actual - comparable) <= precision;
   }
 }
