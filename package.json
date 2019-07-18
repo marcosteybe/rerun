@@ -1,13 +1,13 @@
 {
   "name": "my-activities",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
     "build": "ng build --prod",
     "lint": "ng lint",
-    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && ngh --no-silent --message=\"publishing\""
+    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && npx ngh --no-silent --message=\"publishing\""
   },
   "private": true,
   "dependencies": {
@@ -33,6 +33,7 @@
     "@angular/compiler-cli": "^8.1.2",
     "@angular/language-service": "^8.1.2",
     "@types/node": "^12.6.8",
+    "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "^5.0.1",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
