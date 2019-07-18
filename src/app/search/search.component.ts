@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import {forkJoin} from 'rxjs/observable/forkJoin';
-import {Subject} from 'rxjs/Subject';
+import {Subject, forkJoin} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
@@ -23,8 +22,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public distanceFilter: string;
   private distanceFilterSubject: Subject<string> = new Subject();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private stravaService: StravaService) {
     this.distanceFilterSubject
@@ -118,7 +117,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.loadAllActivities();
     }
 
-    let parts: string[] = distanceFilter.split('-');
+    const parts: string[] = distanceFilter.split('-');
     let distanceFrom: number = parts[0] ? Number(parts[0].trim()) : NaN;
     let distanceTo: number = parts[1] ? Number(parts[1].trim()) : NaN;
 
@@ -133,17 +132,17 @@ export class SearchComponent implements OnInit, AfterViewInit {
       distanceTo = distanceFrom;
     }
     if (distanceTo < distanceFrom) {
-      let tmp = distanceTo;
+      const tmp = distanceTo;
       distanceTo = distanceFrom;
       distanceFrom = tmp;
     }
-    if (distanceFrom == distanceTo) {
+    if (distanceFrom === distanceTo) {
       distanceFrom *= 0.9;
       distanceTo *= 1.1;
     }
     console.debug('filtering from', distanceFrom, 'to', distanceTo);
     this.dataSource.data = this.activities.filter((activity: any) => {
-      let distance: number = activity.distance / 1000;
+      const distance: number = activity.distance / 1000;
       return distance >= distanceFrom && distance <= distanceTo;
     });
   }

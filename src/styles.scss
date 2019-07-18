@@ -7,7 +7,7 @@
 }
 
 .desktop-only {
-  display: unset;
+  display: inherit;
 }
 
 .mobile-only {
@@ -20,7 +20,7 @@
     display: none;
   }
   .mobile-only {
-    display: unset;
+    display: inherit;
   }
 }
 
