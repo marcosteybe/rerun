@@ -14,7 +14,7 @@
       <mat-label>Filter by location</mat-label>
       <mat-select [(ngModel)]="locationFilter" (ngModelChange)="filterByLocation(locationFilter)">
         <mat-option>None</mat-option>
-        <mat-option *ngFor="let location of availableLocations" [value]="location" value="1">{{location.viewValue}}</mat-option>
+        <mat-option *ngFor="let location of availableLocations" [value]="location">{{location}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

@@ -1,4 +1,4 @@
 export interface MyLocation {
-  latLong: number[];
+  latlng: number[];
   viewValue: string;
 }
