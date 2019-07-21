@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import {forkJoin} from 'rxjs/observable/forkJoin';
-import {Subject} from 'rxjs/Subject';
+import {Subject, forkJoin} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Activity} from '../model/activity';
 import {LocationService} from './location.service';
@@ -29,8 +28,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public availableLocations: string[];
   public locationFilter: string;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private stravaService: StravaService, private locationService: LocationService) {
     this.distanceFilterSubject
@@ -126,6 +125,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    if (!this.allActivitiesLoaded) {
+      this.loadAllActivities();
+    }
+
     let parts: string[] = distanceFilter.split('-');
     let distanceFrom: number = parts[0] ? Number(parts[0].trim()) : NaN;
     let distanceTo: number = parts[1] ? Number(parts[1].trim()) : NaN;
@@ -141,11 +144,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
       distanceTo = distanceFrom;
     }
     if (distanceTo < distanceFrom) {
-      let tmp = distanceTo;
+      const tmp = distanceTo;
       distanceTo = distanceFrom;
       distanceFrom = tmp;
     }
-    if (distanceFrom == distanceTo) {
+    if (distanceFrom === distanceTo) {
       distanceFrom *= 0.9;
       distanceTo *= 1.1;
     }

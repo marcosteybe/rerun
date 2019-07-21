@@ -1,40 +1,42 @@
 {
   "name": "my-activities",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
     "build": "ng build --prod",
     "lint": "ng lint",
-    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && ngh --no-silent --message=\"publishing\""
+    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && npx ngh --no-silent --message=\"publishing\""
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.0",
-    "@angular/cdk": "^5.2.4",
-    "@angular/common": "^5.2.0",
-    "@angular/compiler": "^5.2.0",
-    "@angular/core": "^5.2.0",
-    "@angular/forms": "^5.2.0",
-    "@angular/http": "^5.2.0",
-    "@angular/material": "^5.2.4",
-    "@angular/platform-browser": "^5.2.0",
-    "@angular/platform-browser-dynamic": "^5.2.0",
-    "@angular/router": "^5.2.0",
-    "core-js": "^2.4.1",
+    "@angular/animations": "^8.1.2",
+    "@angular/cdk": "^8.1.1",
+    "@angular/common": "^8.1.2",
+    "@angular/compiler": "^8.1.2",
+    "@angular/core": "^8.1.2",
+    "@angular/forms": "^8.1.2",
+    "@angular/material": "^8.1.1",
+    "@angular/platform-browser": "^8.1.2",
+    "@angular/platform-browser-dynamic": "^8.1.2",
+    "@angular/router": "^8.1.2",
+    "core-js": "^3.1.4",
     "normalize.css": "^8.0.0",
-    "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "rxjs": "^6.5.2",
+    "tslib": "^1.9.0",
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.3",
-    "@angular/compiler-cli": "^5.2.0",
-    "@angular/language-service": "^5.2.0",
-    "@types/node": "~6.0.60",
-    "codelyzer": "^4.0.1",
-    "ts-node": "~4.1.0",
-    "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "@angular-devkit/build-angular": "~0.801.2",
+    "@angular/cli": "^8.1.2",
+    "@angular/compiler-cli": "^8.1.2",
+    "@angular/language-service": "^8.1.2",
+    "@types/node": "^12.6.8",
+    "angular-cli-ghpages": "^0.5.3",
+    "codelyzer": "^5.0.1",
+    "ts-node": "~8.3.0",
+    "tslint": "~5.18.0",
+    "typescript": "~3.4.5"
   }
 }
