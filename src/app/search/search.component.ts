@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import {Subject, forkJoin} from 'rxjs';
+import {forkJoin, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Activity} from '../model/activity';
 import {LocationService} from './location.service';
@@ -19,7 +19,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public numberOfActivities = 0;
   public activities: Activity[] = [];
   public loadingActivities = true;
-  private allActivitiesLoaded = false;
 
   public distanceFilter: string;
   private distanceFilterRange: number[];
@@ -46,7 +45,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   loadInitialActivities() {
-    this.allActivitiesLoaded = false;
     this.loadingActivities = true;
     this.stravaService.listInitialActivities().subscribe(
       activities => {
@@ -81,7 +79,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
         this.activities = activities;
         this.dataSource.data = activities;
         this.dataSource.filteredData = activities;
-        this.allActivitiesLoaded = true;
       },
       error => {
         console.error('error loading activities', error);
@@ -123,10 +120,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public filterByDistance(distanceFilter: string) {
     if (distanceFilter == null) {
       return;
-    }
-
-    if (!this.allActivitiesLoaded) {
-      this.loadAllActivities();
     }
 
     let parts: string[] = distanceFilter.split('-');
