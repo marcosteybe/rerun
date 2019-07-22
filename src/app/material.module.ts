@@ -8,6 +8,7 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
+  MatSnackBarModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule
@@ -15,28 +16,30 @@ import {
 
 @NgModule({
   imports: [
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatFormFieldModule,
     MatButtonModule,
-    MatToolbarModule,
-    MatIconModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule
   ],
   exports: [
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatFormFieldModule,
     MatButtonModule,
-    MatToolbarModule,
-    MatIconModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule {
