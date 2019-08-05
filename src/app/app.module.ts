@@ -12,8 +12,8 @@ import {AuthConfig} from './auth/auth.config';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
 import {PwaService} from './pwa/pwa.service';
 import {PwaComponent} from './pwa/pwa.component';
 
@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
