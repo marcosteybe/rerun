@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from './auth/auth.service';
+import {PwaService} from './pwa/pwa.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import {AuthService} from './auth/auth.service';
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private pwaService: PwaService) {
   }
 
   public logout() {

@@ -7,7 +7,8 @@
     "serve": "ng serve",
     "build": "ng build --prod",
     "lint": "ng lint",
-    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && npx ngh --no-silent --message=\"publishing\""
+    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/my-activities/\" && npx ngh --no-silent --message=\"publishing\"",
+    "serve-pwa": "http-server -p 4200 -c-1 dist"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +21,9 @@
     "@angular/material": "^8.1.1",
     "@angular/platform-browser": "^8.1.2",
     "@angular/platform-browser-dynamic": "^8.1.2",
+    "@angular/pwa": "^0.801.2",
     "@angular/router": "^8.1.2",
+    "@angular/service-worker": "^8.1.2",
     "core-js": "^3.1.4",
     "normalize.css": "^8.0.0",
     "rxjs": "^6.5.2",
@@ -35,6 +38,7 @@
     "@types/node": "^12.6.8",
     "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "^5.0.1",
+    "http-server": "^0.9.0",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.4.5"

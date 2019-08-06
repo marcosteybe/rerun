@@ -9,6 +9,7 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSelectModule,
+  MatSnackBarModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule
@@ -16,30 +17,32 @@ import {
 
 @NgModule({
   imports: [
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatFormFieldModule,
     MatButtonModule,
-    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
     MatIconModule,
-    MatSelectModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule
   ],
   exports: [
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-    MatFormFieldModule,
     MatButtonModule,
-    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
     MatIconModule,
-    MatSelectModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule {
