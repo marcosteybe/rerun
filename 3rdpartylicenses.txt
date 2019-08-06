@@ -101,6 +101,8 @@ THE SOFTWARE.
 
 @angular/material/select
 
+@angular/material/snack-bar
+
 @angular/material/sort
 
 @angular/material/table
@@ -113,6 +115,9 @@ THE SOFTWARE.
 MIT
 
 @angular/router
+MIT
+
+@angular/service-worker
 MIT
 
 core-js
