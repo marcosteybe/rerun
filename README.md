@@ -1,4 +1,4 @@
-# my-activities
+# reRun
 
 An app providing advanced filtering of your Strava activities. Great for finding those lovely routes you have run before.
 
@@ -12,4 +12,4 @@ Run `npm run build` (or `ng build`) to create a production build of the app. The
 
 ## Publishing
 
-Run `npm run publish` to create a production build and publish your local version. Navigate to `https://marcosteybe.github.io/my-activities/`.
+Run `npm run publish` to create a production build and publish your local version. Navigate to `https://marcosteybe.github.io/reRun/`.
