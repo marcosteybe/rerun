@@ -6,9 +6,16 @@
   <div class="app-header">
     <mat-form-field>
       <input matInput (keyup)="filterByDistanceKeyUp(distanceFilter)" [(ngModel)]="distanceFilter" placeholder="Filter by distance">
-      <button mat-button *ngIf="distanceFilter" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+      <button mat-button *ngIf="distanceFilter" matSuffix mat-icon-button aria-label="Clear" (click)="clearDistanceFilter()">
         <mat-icon>close</mat-icon>
       </button>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Filter by location</mat-label>
+      <mat-select [(ngModel)]="locationFilter" (ngModelChange)="filterByLocation(locationFilter)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let location of availableLocations" [value]="location">{{location}}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 

@@ -9,6 +9,7 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSnackBarModule,
+  MatSelectModule,
   MatSortModule,
   MatTableModule,
   MatToolbarModule
@@ -26,6 +27,14 @@ import {
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSelectModule
     MatToolbarModule
   ],
   exports: [
@@ -39,6 +48,14 @@ import {
     MatSnackBarModule,
     MatSortModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSelectModule
     MatToolbarModule
   ]
 })

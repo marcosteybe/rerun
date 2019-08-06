@@ -1,51 +1,58 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import {Subject, forkJoin} from 'rxjs';
+import {forkJoin, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {Activity} from '../model/activity';
+import {LocationService} from './location.service';
 
 @Component({
   selector: 'app-search',
   styleUrls: ['search.component.scss'],
   templateUrl: 'search.component.html',
-  providers: [StravaService]
+  providers: [StravaService, LocationService]
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
   public displayedColumns = ['start_date', 'name', 'distance', 'moving_time', 'pace', 'total_elevation_gain', 'suffer_score', 'details'];
-  public dataSource = new MatTableDataSource();
+  public dataSource = new MatTableDataSource<Activity>();
   public numberOfActivities = 0;
-  public activities: any[] = [];
+  public activities: Activity[] = [];
   public loadingActivities = true;
-  private allActivitiesLoaded = false;
 
   public distanceFilter: string;
+  private distanceFilterRange: number[];
   private distanceFilterSubject: Subject<string> = new Subject();
+
+  public availableLocations: string[];
+  public locationFilter: string;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private stravaService: StravaService) {
+  constructor(private stravaService: StravaService, private locationService: LocationService) {
     this.distanceFilterSubject
       .pipe(debounceTime(200), distinctUntilChanged())
       .subscribe(searchTextValue => {
         this.filterByDistance(searchTextValue);
       });
+    this.availableLocations = this.locationService.listMyStartLocations();
   }
 
   ngOnInit() {
-    this.loadInitialActivities();
+    // this.loadInitialActivities();
+    this.loadAllActivities();
   }
 
   loadInitialActivities() {
-    this.allActivitiesLoaded = false;
     this.loadingActivities = true;
     this.stravaService.listInitialActivities().subscribe(
       activities => {
         this.loadingActivities = false;
         this.numberOfActivities = activities.length;
-        this.activities = JSON.parse(JSON.stringify(activities));
+        this.activities = activities;
         this.dataSource.data = activities;
+        this.dataSource.filteredData = activities;
       },
       error => {
         console.error('error loading activities', error);
@@ -67,12 +74,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
     forkJoin(...observables).subscribe(
       nestedActivities => {
         const activities = [].concat(...nestedActivities);
-        console.log(activities);
         this.loadingActivities = false;
         this.numberOfActivities = activities.length;
-        this.activities = JSON.parse(JSON.stringify(activities));
+        this.activities = activities;
         this.dataSource.data = activities;
-        this.allActivitiesLoaded = true;
+        this.dataSource.filteredData = activities;
       },
       error => {
         console.error('error loading activities', error);
@@ -89,7 +95,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sortingDataAccessor = (activity: any, column: string) => {
+    this.dataSource.sortingDataAccessor = (activity: Activity, column: string) => {
       switch (column) {
         case 'pace':
           return activity.moving_time / activity.distance;
@@ -97,9 +103,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
           return activity[column];
       }
     };
+    this.dataSource.filterPredicate = (activity: Activity, filter: string): boolean => {
+      return this.matchesStartLocation(activity) && this.matchesDistance(activity);
+    };
   }
 
-  public clearFilter() {
+  public clearDistanceFilter() {
     this.distanceFilter = null;
     this.dataSource.data = this.activities;
   }
@@ -113,11 +122,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    if (!this.allActivitiesLoaded) {
-      this.loadAllActivities();
-    }
-
-    const parts: string[] = distanceFilter.split('-');
+    let parts: string[] = distanceFilter.split('-');
     let distanceFrom: number = parts[0] ? Number(parts[0].trim()) : NaN;
     let distanceTo: number = parts[1] ? Number(parts[1].trim()) : NaN;
 
@@ -141,13 +146,35 @@ export class SearchComponent implements OnInit, AfterViewInit {
       distanceTo *= 1.1;
     }
     console.debug('filtering from', distanceFrom, 'to', distanceTo);
-    this.dataSource.data = this.activities.filter((activity: any) => {
-      const distance: number = activity.distance / 1000;
-      return distance >= distanceFrom && distance <= distanceTo;
-    });
+    this.distanceFilterRange = [distanceFrom, distanceTo];
+    this.dataSource.filter = FilterCriteria.DISTANCE;
+  }
+
+  public filterByLocation(selectedLocation: string) {
+    if (selectedLocation == null) {
+      return;
+    }
+
+    console.debug('filtering to', selectedLocation);
+    this.dataSource.filter = FilterCriteria.LOCATION;
+  }
+
+  private matchesStartLocation(activity: Activity): boolean {
+    return !this.locationFilter || this.locationService.findMyStartLocation(activity).viewValue === this.locationFilter;
+  }
+
+  private matchesDistance(activity: Activity): boolean {
+    const distance: number = activity.distance / 1000;
+    return !this.distanceFilterRange || distance >= this.distanceFilterRange[0] && distance <= this.distanceFilterRange[1];
   }
 
   public trackById(index: number, item: any) {
     return item.id;
   }
+
+}
+
+enum FilterCriteria {
+  DISTANCE = 'DISTANCE',
+  LOCATION = 'LOCATION'
 }
