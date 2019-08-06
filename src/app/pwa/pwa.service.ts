@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
+import {Injectable} from '@angular/core';
+import {SwUpdate} from '@angular/service-worker';
 import {Observable} from 'rxjs/internal/Observable';
 
 @Injectable()
@@ -10,6 +10,8 @@ export class PwaService {
 
   constructor(private swUpdate: SwUpdate) {
     window.addEventListener('beforeinstallprompt', beforeInstallPromptEvent => {
+      console.log('beforeinstallprompt event', beforeInstallPromptEvent);
+
       // prevent Chrome 67 and earlier from automatically showing the prompt
       beforeInstallPromptEvent.preventDefault();
 
