@@ -52,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "reRun:build"
+            "browserTarget": "rerun:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "reRun:build:production"
+              "browserTarget": "rerun:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "reRun:build"
+            "browserTarget": "rerun:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "reRun:serve"
+            "devServerTarget": "rerun:serve"
           }
         },
         "lint": {

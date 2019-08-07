@@ -1,13 +1,13 @@
 {
-  "name": "reRun",
-  "version": "0.3",
+  "name": "rerun",
+  "version": "0.3.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
     "build": "ng build --prod",
     "lint": "ng lint",
-    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/reRun/\" && npx ngh --no-silent --message=\"publishing\"",
+    "publish": "ng build --prod --base-href \"https://marcosteybe.github.io/rerun/\" && npx ngh --no-silent --message=\"publishing\"",
     "serve-pwa": "http-server -p 4200 -c-1 dist"
   },
   "private": true,
