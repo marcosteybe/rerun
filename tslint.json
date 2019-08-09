@@ -119,12 +119,14 @@
       true,
       "attribute",
       "app",
+      "rerun",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
       "app",
+      "rerun",
       "kebab-case"
     ],
     "no-output-on-prefix": true,

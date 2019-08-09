@@ -3,7 +3,7 @@ import {AuthService} from './auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'rerun-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent {

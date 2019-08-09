@@ -1,16 +1,16 @@
-.app-container {
+.rerun-container {
   display: flex;
   flex-direction: column;
   min-width: 300px;
   position: relative;
 }
 
-.app-table {
+.rerun-table {
   overflow: auto;
   min-height: 500px;
 }
 
-.app-header {
+.rerun-header {
   min-height: 64px;
   display: flex;
   align-items: center;
@@ -22,7 +22,7 @@
   }
 }
 
-.app-loading-shade {
+.rerun-loading-shade {
   position: absolute;
   top: 0;
   left: 0;

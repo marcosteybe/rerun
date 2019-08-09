@@ -7,7 +7,7 @@ import {Activity} from '../model/activity';
 import {LocationService} from './location.service';
 
 @Component({
-  selector: 'app-search',
+  selector: 'rerun-search',
   styleUrls: ['search.component.scss'],
   templateUrl: 'search.component.html',
   providers: [StravaService, LocationService]
@@ -122,7 +122,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    let parts: string[] = distanceFilter.split('-');
+    const parts: string[] = distanceFilter.split('-');
     let distanceFrom: number = parts[0] ? Number(parts[0].trim()) : NaN;
     let distanceTo: number = parts[1] ? Number(parts[1].trim()) : NaN;
 

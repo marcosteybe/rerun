@@ -16,6 +16,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {PwaService} from './pwa/pwa.service';
 import {PwaComponent} from './pwa/pwa.component';
+import {HeaderComponent} from './header/header.component';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     LoginComponent,
     SearchComponent,
     PwaComponent

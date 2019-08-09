@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {PwaService} from './pwa.service';
-import {SwUpdate} from '@angular/service-worker';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
-  selector: 'app-pwa',
+  selector: 'rerun-pwa',
   templateUrl: './pwa.component.html'
 })
 export class PwaComponent {

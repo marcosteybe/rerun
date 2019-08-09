@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <span>reRun</span>
+  <span class="rerun-fill-remaining-space"></span>
+  <rerun-pwa></rerun-pwa>
+  <button mat-button *ngIf="isLoggedIn()" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "reRun": {
+    "rerun": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -99,7 +99,7 @@
         }
       }
     },
-    "reRun-e2e": {
+    "rerun-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -125,14 +125,14 @@
       }
     }
   },
-  "defaultProject": "reRun",
+  "defaultProject": "rerun",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
+      "prefix": "rerun",
       "styleext": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": "rerun"
     }
   }
 }
