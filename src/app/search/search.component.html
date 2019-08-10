@@ -1,17 +1,17 @@
-<div class="rerun-loading-shade" *ngIf="loadingActivities">
+<div class="rerun-search-spinner" *ngIf="loadingActivities">
   <mat-spinner *ngIf="loadingActivities"></mat-spinner>
 </div>
 
-<div class="rerun-header">
-  <mat-form-field>
-    <input matInput (keyup)="filterByDistanceKeyUp(distanceFilter)" [(ngModel)]="distanceFilter"
-           placeholder="Filter by distance">
+<div class="rerun-search-header">
+  <mat-form-field class="rerun-search-field">
+    <input matInput type="text" placeholder="Filter by distance"
+           (keyup)="filterByDistanceKeyUp(distanceFilter)" [(ngModel)]="distanceFilter">
     <button mat-button *ngIf="distanceFilter" matSuffix mat-icon-button aria-label="Clear"
             (click)="clearDistanceFilter()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="rerun-search-field">
     <mat-label>Filter by location</mat-label>
     <mat-select [(ngModel)]="locationFilter" (ngModelChange)="filterByLocation(locationFilter)">
       <mat-option>None</mat-option>
@@ -20,7 +20,7 @@
   </mat-form-field>
 </div>
 
-<mat-table #table [dataSource]="dataSource" [trackBy]="trackById" class="rerun-table"
+<mat-table #table [dataSource]="dataSource" [trackBy]="trackById" class="rerun-search-results"
            matSort matSortActive="start_date" matSortDisableClear matSortDirection="desc">
 
   <!--- Note that these columns can be defined in any order.

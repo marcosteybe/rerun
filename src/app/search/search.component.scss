@@ -1,16 +1,9 @@
-.rerun-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  position: relative;
-}
-
-.rerun-table {
+.rerun-search-results {
   overflow: auto;
   min-height: 500px;
 }
 
-.rerun-header {
+.rerun-search-header {
   min-height: 64px;
   display: flex;
   align-items: center;
@@ -22,7 +15,7 @@
   }
 }
 
-.rerun-loading-shade {
+.rerun-search-spinner {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,6 +26,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.rerun-search-field {
+  width: 180px;
 }
 
 /* Column Widths */
