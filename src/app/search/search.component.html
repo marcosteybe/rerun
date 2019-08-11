@@ -4,7 +4,7 @@
 
 <div class="rerun-search-header">
   <mat-form-field class="rerun-search-field">
-    <input matInput type="text" placeholder="Filter by distance"
+    <input matInput type="text" placeholder="Distance"
            (keyup)="filterByDistanceKeyUp(distanceFilter)" [(ngModel)]="distanceFilter">
     <button mat-button *ngIf="distanceFilter" matSuffix mat-icon-button aria-label="Clear"
             (click)="clearDistanceFilter()">
@@ -12,7 +12,7 @@
     </button>
   </mat-form-field>
   <mat-form-field class="rerun-search-field">
-    <mat-label>Filter by location</mat-label>
+    <mat-label>Start from</mat-label>
     <mat-select [(ngModel)]="locationFilter" (ngModelChange)="filterByLocation(locationFilter)">
       <mat-option>None</mat-option>
       <mat-option *ngFor="let location of availableLocations" [value]="location">{{location}}</mat-option>
@@ -41,7 +41,10 @@
   </ng-container>
 
   <ng-container matColumnDef="distance">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Distance</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      <span class="desktop-only">Distance</span>
+      <span class="mobile-only">Dist.</span>
+    </mat-header-cell>
     <mat-cell *matCellDef="let row">
       <ng-template [ngIf]="row.distance">
         <span>{{ (row.distance / 1000) | number:'1.1-1' }}</span>
@@ -52,8 +55,8 @@
   </ng-container>
 
   <ng-container matColumnDef="moving_time">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ (row.moving_time * 1000) | date:'H:mm.ss':'UTC' }}</mat-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header class="desktop-only">Duration</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="desktop-only">{{ (row.moving_time * 1000) | date:'H:mm.ss':'UTC' }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="pace">

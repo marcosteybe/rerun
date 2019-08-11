@@ -29,7 +29,7 @@
 }
 
 .rerun-search-field {
-  width: 180px;
+  width: 140px;
 }
 
 /* Column Widths */
@@ -49,16 +49,12 @@
 // breakpoint according to https://github.com/angular/flex-layout/wiki/Responsive-API
 @media screen and (max-width: 599px) {
   .mat-column-distance,
-  .mat-column-moving_time {
-    max-width: 75px;
-  }
-
   .mat-column-pace,
   .mat-column-details {
     max-width: 45px;
   }
 
   .mat-column-start_date {
-    max-width: 75px;
+    max-width: 70px;
   }
 }
