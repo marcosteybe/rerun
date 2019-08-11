@@ -91,9 +91,11 @@
   </ng-container>
 
   <ng-container matColumnDef="details">
-    <mat-header-cell *matHeaderCellDef>Details</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef><span class="rerun-center-horizontal">Details</span></mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <a href="https://www.strava.com/activities/{{row.id}}" target="_blank"><img src="assets/strava.png" width="30px"></a>
+      <a href="https://www.strava.com/activities/{{row.id}}" target="_blank" class="rerun-center-horizontal">
+        <img src="assets/strava.png" width="30px">
+      </a>
     </mat-cell>
   </ng-container>
 
