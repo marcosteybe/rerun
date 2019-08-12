@@ -17,6 +17,7 @@ import {environment} from '../environments/environment';
 import {PwaService} from './pwa/pwa.service';
 import {PwaComponent} from './pwa/pwa.component';
 import {HeaderComponent} from './header/header.component';
+import {StorageModule} from '@ngx-pwa/local-storage';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchComponent},
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production}),
+    StorageModule.forRoot({IDBNoWrap: true})
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

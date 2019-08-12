@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import {forkJoin, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Activity} from '../model/activity';
 import {LocationService} from './location.service';
@@ -40,40 +40,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // this.loadInitialActivities();
-    this.loadAllActivities();
+    this.loadMyActivities();
   }
 
-  loadInitialActivities() {
+  loadMyActivities() {
     this.loadingActivities = true;
-    this.stravaService.listInitialActivities().subscribe(
-      activities => {
-        this.loadingActivities = false;
-        this.numberOfActivities = activities.length;
-        this.activities = activities;
-        this.dataSource.data = activities;
-        this.dataSource.filteredData = activities;
-      },
-      error => {
-        console.error('error loading activities', error);
-        this.loadingActivities = false;
-        this.numberOfActivities = 0;
-        this.activities = [];
-        this.dataSource.data = [];
-      });
-  }
-
-  loadAllActivities() {
-    this.loadingActivities = true;
-
-    const pageSize = 100;
-    const numberOfPages = 10;
-    const pages = Array.from(Array(numberOfPages).keys());
-
-    const observables = pages.map(page => this.stravaService.listActivities(page + 1, pageSize));
-    forkJoin(...observables).subscribe(
-      nestedActivities => {
-        const activities = [].concat(...nestedActivities);
+    this.stravaService.loadMyActivities().subscribe(activities => {
         this.loadingActivities = false;
         this.numberOfActivities = activities.length;
         this.activities = activities;

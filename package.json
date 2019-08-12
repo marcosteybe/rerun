@@ -24,6 +24,7 @@
     "@angular/pwa": "^0.801.2",
     "@angular/router": "^8.1.2",
     "@angular/service-worker": "^8.1.2",
+    "@ngx-pwa/local-storage": "^8.0.2",
     "core-js": "^3.1.4",
     "normalize.css": "^8.0.0",
     "rxjs": "^6.5.2",
