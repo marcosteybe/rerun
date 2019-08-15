@@ -29,6 +29,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public availableLocations: string[];
   public locationFilter: string;
 
+  public availableRunTypes = ['Default', 'Race', 'Long Run', 'Workout'];
+  public runTypeFilter: string;
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -83,7 +86,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       }
     };
     this.dataSource.filterPredicate = (activity: Activity, filter: string): boolean => {
-      return this.matchesStartLocation(activity) && this.matchesDistance(activity);
+      return this.matchesStartLocation(activity) && this.matchesDistance(activity) && this.matchesRunType(activity);
     };
   }
 
@@ -138,8 +141,21 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = FilterCriteria.LOCATION;
   }
 
+  public filterByRunType(selectedRunType: string) {
+    if (selectedRunType == null) {
+      return;
+    }
+
+    console.debug('filtering to', selectedRunType);
+    this.dataSource.filter = FilterCriteria.RUN_TYPE;
+  }
+
   private matchesStartLocation(activity: Activity): boolean {
     return !this.locationFilter || this.locationService.findMyStartLocation(activity).viewValue === this.locationFilter;
+  }
+
+  private matchesRunType(activity: Activity): boolean {
+    return !this.runTypeFilter || activity.workout_type === this.availableRunTypes.indexOf(this.runTypeFilter);
   }
 
   private matchesDistance(activity: Activity): boolean {
@@ -155,5 +171,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
 enum FilterCriteria {
   DISTANCE = 'DISTANCE',
-  LOCATION = 'LOCATION'
+  LOCATION = 'LOCATION',
+  RUN_TYPE = 'RUN_TYPE'
 }

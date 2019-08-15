@@ -4,15 +4,14 @@
 }
 
 .rerun-search-header {
-  padding: 8px 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 8px 0;
+}
 
-  .mat-form-field {
-    box-sizing: border-box;
-    padding-right: 16px;
-    &:last-of-type {
-      padding-right: 0;
-    }
-  }
+.rerun-search-field {
+  padding: 0 8px;
+  max-width: 200px;
 }
 
 .rerun-search-spinner {
@@ -26,11 +25,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.rerun-search-field {
-  width: 50%;
-  max-width: 200px;
 }
 
 /* Column Widths */
@@ -65,6 +59,7 @@ mat-footer-cell:first-child,
 mat-header-cell:first-child {
   padding-left: 16px;
 }
+
 mat-cell:last-child,
 mat-footer-cell:last-child,
 mat-header-cell:last-child {

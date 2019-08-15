@@ -14,8 +14,15 @@
   <mat-form-field class="rerun-search-field">
     <mat-label>Start from</mat-label>
     <mat-select [(ngModel)]="locationFilter" (ngModelChange)="filterByLocation(locationFilter)">
-      <mat-option>None</mat-option>
+      <mat-option [value]="null">Any</mat-option>
       <mat-option *ngFor="let location of availableLocations" [value]="location">{{location}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="rerun-search-field">
+    <mat-label>Run type</mat-label>
+    <mat-select [(ngModel)]="runTypeFilter" (ngModelChange)="filterByRunType(runTypeFilter)">
+      <mat-option [value]="null">All</mat-option>
+      <mat-option *ngFor="let runType of availableRunTypes" [value]="runType">{{runType}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
@@ -56,7 +63,8 @@
 
   <ng-container matColumnDef="moving_time">
     <mat-header-cell *matHeaderCellDef mat-sort-header class="desktop-only">Duration</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="desktop-only">{{ (row.moving_time * 1000) | date:'H:mm.ss':'UTC' }}</mat-cell>
+    <mat-cell *matCellDef="let row" class="desktop-only">{{ (row.moving_time * 1000) | date:'H:mm.ss':'UTC' }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="pace">
