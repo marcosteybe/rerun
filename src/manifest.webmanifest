@@ -1,7 +1,7 @@
 {
   "name": "reRun",
   "short_name": "reRun",
-  "theme_color": "#fc4c02",
+  "theme_color": "#E64A19",
   "background_color": "#ffffff",
   "display": "standalone",
   "scope": "/",
