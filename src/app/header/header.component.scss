@@ -1,5 +1,8 @@
 .rerun-header {
   height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .rerun-fill-remaining-space {
