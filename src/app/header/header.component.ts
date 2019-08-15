@@ -26,6 +26,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  public addToHomescreen() {
+    return this.installService.installApp();
+  }
+
+  public showAddToHomescreen() {
+    return this.installService.available;
+  }
+
   public logout() {
     this.authService.logout();
     window.location.reload();
