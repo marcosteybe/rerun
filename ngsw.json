@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1565725614033,
+  "timestamp": 1565897620903,
   "index": "https://marcosteybe.github.io/rerun/index.html",
   "assetGroups": [
     {
@@ -10,13 +10,13 @@
       "urls": [
         "https://marcosteybe.github.io/rerun/favicon.ico",
         "https://marcosteybe.github.io/rerun/index.html",
-        "https://marcosteybe.github.io/rerun/main-es2015.f1b8dad1182bb23d8f7e.js",
-        "https://marcosteybe.github.io/rerun/main-es5.212c6ed1f74980c9a854.js",
+        "https://marcosteybe.github.io/rerun/main-es2015.bc1b00898e04e7b8ccd4.js",
+        "https://marcosteybe.github.io/rerun/main-es5.62a0244af2c8616fe2c1.js",
         "https://marcosteybe.github.io/rerun/polyfills-es2015.8419f7db545646fbe91d.js",
         "https://marcosteybe.github.io/rerun/polyfills-es5.cdc05262d1cdcd2c4540.js",
         "https://marcosteybe.github.io/rerun/runtime-es2015.10a1f01eef199006286d.js",
         "https://marcosteybe.github.io/rerun/runtime-es5.9ad22a88fcc70a015907.js",
-        "https://marcosteybe.github.io/rerun/styles.9b35d17ab498d0bd4663.css"
+        "https://marcosteybe.github.io/rerun/styles.b837745484816cbe5b13.css"
       ],
       "patterns": []
     },
@@ -53,14 +53,14 @@
     "https://marcosteybe.github.io/rerun/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://marcosteybe.github.io/rerun/assets/strava.png": "21c3ddfcf9b6115b3e38164df57bca199ea3c6a5",
     "https://marcosteybe.github.io/rerun/favicon.ico": "f269ada2543fabb5b94b9b3853500127e1aa4325",
-    "https://marcosteybe.github.io/rerun/index.html": "b31280b1a67d09bea03a8411997dcf2f0c9648e3",
-    "https://marcosteybe.github.io/rerun/main-es2015.f1b8dad1182bb23d8f7e.js": "5fa2471fdfc0bd23d373b353e02367009802b36a",
-    "https://marcosteybe.github.io/rerun/main-es5.212c6ed1f74980c9a854.js": "880f9bba754ec53e68fe321e4a77bfda3fc830b0",
+    "https://marcosteybe.github.io/rerun/index.html": "b6c74ca3d9b00815948a90cc361ffb25d677a367",
+    "https://marcosteybe.github.io/rerun/main-es2015.bc1b00898e04e7b8ccd4.js": "c9370134144c31ba31b8cd517f31a30863a1d7b4",
+    "https://marcosteybe.github.io/rerun/main-es5.62a0244af2c8616fe2c1.js": "c3aabf395de8acd56aa11407214ee2547317135e",
     "https://marcosteybe.github.io/rerun/polyfills-es2015.8419f7db545646fbe91d.js": "058203dab4ba87056d6976029ba60fa42e6f75b9",
     "https://marcosteybe.github.io/rerun/polyfills-es5.cdc05262d1cdcd2c4540.js": "14763ce4891bdc3d87cd41d049fcd1f314032eb8",
     "https://marcosteybe.github.io/rerun/runtime-es2015.10a1f01eef199006286d.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
     "https://marcosteybe.github.io/rerun/runtime-es5.9ad22a88fcc70a015907.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
-    "https://marcosteybe.github.io/rerun/styles.9b35d17ab498d0bd4663.css": "aa50ffd59433957559a1eb179105e13583ead473"
+    "https://marcosteybe.github.io/rerun/styles.b837745484816cbe5b13.css": "e191617a7ddc300587da77a6b5cc7277b6d4ab52"
   },
   "navigationUrls": [
     {

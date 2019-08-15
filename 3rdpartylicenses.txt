@@ -95,6 +95,8 @@ THE SOFTWARE.
 
 @angular/material/icon
 
+@angular/material/menu
+
 @angular/material/paginator
 
 @angular/material/progress-spinner
