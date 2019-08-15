@@ -2,8 +2,7 @@
   <span>reRun</span>
   <span class="rerun-fill-remaining-space"></span>
   <rerun-pwa></rerun-pwa>
-  <button mat-icon-button *ngIf="isLoggedIn()"
-          [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{username: 'bla bla'}">
+  <button mat-icon-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
 </mat-toolbar>
@@ -11,7 +10,8 @@
 <mat-menu #appMenu="matMenu" xPosition="before">
   <ng-template matMenuContent let-name="name">
     <button mat-menu-item disabled>
-      <span>Logged in as {{username}}</span>
+      <span><img src="{{athlete.profile_medium}}"
+                 class="rerun-athlete-img">{{athlete.firstname}} {{athlete.lastname}}</span>
     </button>
     <button mat-menu-item (click)="refresh()">
       <mat-icon>autorenew</mat-icon>

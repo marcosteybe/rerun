@@ -3,6 +3,7 @@ import {AuthService} from '../auth/auth.service';
 import {AppState} from '../app.state';
 import {AppEvent} from '../app.event';
 import {StravaService} from '../search/strava.service';
+import {Athlete} from '../model/athlete';
 
 @Component({
   selector: 'rerun-header',
@@ -11,14 +12,14 @@ import {StravaService} from '../search/strava.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public username: String;
+  public athlete: Athlete;
 
   constructor(private authService: AuthService, private stravaService: StravaService, private appState: AppState) {
   }
 
   ngOnInit() {
     this.stravaService.loadMyself().subscribe(athlete => {
-      this.username = athlete.firstname + ' ' + athlete.lastname;
+      this.athlete = athlete;
     });
   }
 

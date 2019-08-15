@@ -8,3 +8,12 @@
 .rerun-fill-remaining-space {
   flex: 1 1 auto;
 }
+
+.rerun-athlete-img {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: -4px 12px -4px 4px;
+}
