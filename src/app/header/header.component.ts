@@ -4,6 +4,7 @@ import {AppState} from '../app.state';
 import {AppEvent} from '../app.event';
 import {StravaService} from '../search/strava.service';
 import {Athlete} from '../model/athlete';
+import {InstallService} from '../pwa/install.service';
 
 @Component({
   selector: 'rerun-header',
@@ -14,7 +15,9 @@ export class HeaderComponent implements OnInit {
 
   public athlete: Athlete;
 
-  constructor(private authService: AuthService, private stravaService: StravaService, private appState: AppState) {
+  constructor(
+    private authService: AuthService, private installService: InstallService,
+    private stravaService: StravaService, private appState: AppState) {
   }
 
   ngOnInit() {

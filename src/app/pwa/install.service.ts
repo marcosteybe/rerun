@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {SwUpdate} from '@angular/service-worker';
 import {Observable} from 'rxjs/internal/Observable';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable()
-export class PwaService {
+export class InstallService {
 
-  public installPwaEvent: any;
-  public updateAvailable: Observable<any>;
+  private installPwaEvent: any;
 
-  constructor(private swUpdate: SwUpdate) {
+  constructor() {
     window.addEventListener('beforeinstallprompt', beforeInstallPromptEvent => {
       console.log('beforeinstallprompt event', beforeInstallPromptEvent);
 
@@ -20,8 +20,10 @@ export class PwaService {
     });
 
     window.addEventListener('appinstalled', () => console.log('app successfully installed'));
+  }
 
-    this.updateAvailable = swUpdate.available;
+  public get available() {
+    return !!this.installPwaEvent;
   }
 
   public installApp(): void {
@@ -37,9 +39,5 @@ export class PwaService {
       // prompt can only be clicked once, need to wait for next beforeinstallprompt event
       this.installPwaEvent = null;
     });
-  }
-
-  public updateApp() {
-    this.swUpdate.activateUpdate().then(() => document.location.reload());
   }
 }

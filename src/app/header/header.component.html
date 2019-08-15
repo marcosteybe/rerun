@@ -1,7 +1,10 @@
 <mat-toolbar color="primary" class="rerun-header mat-elevation-z1">
   <span>reRun</span>
   <span class="rerun-fill-remaining-space"></span>
-  <rerun-pwa></rerun-pwa>
+  <button mat-button *ngIf="installService.available" (click)="installService.installApp()">
+    <mat-icon>add_to_home_screen</mat-icon>
+    Save to Homescreen
+  </button>
   <button mat-icon-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="appMenu">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -10,8 +13,10 @@
 <mat-menu #appMenu="matMenu" xPosition="before">
   <ng-template matMenuContent let-name="name">
     <button mat-menu-item disabled>
-      <span><img src="{{athlete.profile_medium}}"
-                 class="rerun-athlete-img">{{athlete.firstname}} {{athlete.lastname}}</span>
+      <span>
+        <img src="{{athlete.profile_medium}}" alt="athlete profile img" class="rerun-athlete-img">
+        {{athlete.firstname}} {{athlete.lastname}}
+      </span>
     </button>
     <button mat-menu-item (click)="refresh()">
       <mat-icon>autorenew</mat-icon>

@@ -12,14 +12,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {PwaComponent} from './pwa/pwa.component';
 import {HeaderComponent} from './header/header.component';
 import {StorageModule} from '@ngx-pwa/local-storage';
 import {StravaService} from './search/strava.service';
 import {AuthService} from './auth/auth.service';
 import {AuthConfig} from './auth/auth.config';
-import {PwaService} from './pwa/pwa.service';
+import {InstallService} from './pwa/install.service';
 import {AppState} from './app.state';
+import {UpdateService} from './pwa/update.service';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchComponent},
@@ -32,8 +32,7 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    SearchComponent,
-    PwaComponent
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +53,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     AuthService,
     AuthConfig,
-    PwaService,
+    InstallService,
+    UpdateService,
     StravaService
   ],
   bootstrap: [AppComponent]
