@@ -67,6 +67,8 @@ export class StravaService {
   }
 
   private loadActivities(page: number = 1, pageSize: number = 20): Observable<Activity[]> {
-    return this.http.get<Activity[]>('https://www.strava.com/api/v3/athlete/activities?page=' + page + '&per_page=' + pageSize);
+    return this.http.get<Activity[]>('https://www.strava.com/api/v3/athlete/activities?page=' + page + '&per_page=' + pageSize).pipe(
+      map(activities => activities.filter(activity => 'Run' === activity.type))
+    );
   }
 }

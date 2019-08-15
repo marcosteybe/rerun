@@ -10,4 +10,5 @@ export interface Activity {
   start_date: string;
   start_latlng: number[];
   start_location: MyLocation;
+  type: string;
 }
