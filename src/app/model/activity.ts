@@ -10,7 +10,4 @@ export interface Activity {
   start_date: string;
   start_latlng: number[];
   start_location: MyLocation;
-  achievement_count: number;
-  kudos_count: number;
-  comment_count: number;
 }

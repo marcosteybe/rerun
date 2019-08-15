@@ -1,16 +1,18 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Activity} from '../model/activity';
 import {LocationService} from './location.service';
+import {AppState} from '../app.state';
+import {AppEvent} from '../app.event';
 
 @Component({
   selector: 'rerun-search',
   styleUrls: ['search.component.scss'],
   templateUrl: 'search.component.html',
-  providers: [StravaService, LocationService]
+  providers: [LocationService]
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
@@ -30,22 +32,27 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private stravaService: StravaService, private locationService: LocationService) {
+  constructor(private stravaService: StravaService, private locationService: LocationService, private appState: AppState) {
     this.distanceFilterSubject
       .pipe(debounceTime(200), distinctUntilChanged())
       .subscribe(searchTextValue => {
         this.filterByDistance(searchTextValue);
       });
-    this.availableLocations = this.locationService.listMyStartLocations();
+    appState.event.subscribe(appEvent => {
+      if (AppEvent.ACTIVITIES_REFRESH === appEvent) {
+        this.loadActivities(this.stravaService.refreshMyActivities());
+      }
+    });
   }
 
   ngOnInit() {
-    this.loadMyActivities();
+    this.availableLocations = this.locationService.listMyStartLocations();
+    this.loadActivities(this.stravaService.loadMyActivities());
   }
 
-  loadMyActivities() {
+  private loadActivities(observable: Observable<Activity[]>) {
     this.loadingActivities = true;
-    this.stravaService.loadMyActivities().subscribe(activities => {
+    observable.subscribe(activities => {
         this.loadingActivities = false;
         this.numberOfActivities = activities.length;
         this.activities = activities;

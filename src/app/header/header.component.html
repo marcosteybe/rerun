@@ -2,8 +2,24 @@
   <span>reRun</span>
   <span class="rerun-fill-remaining-space"></span>
   <rerun-pwa></rerun-pwa>
-  <button mat-button *ngIf="isLoggedIn()" (click)="logout()">
-    <mat-icon>exit_to_app</mat-icon>
-    Logout
+  <button mat-icon-button *ngIf="isLoggedIn()"
+          [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{username: 'bla bla'}">
+    <mat-icon>more_vert</mat-icon>
   </button>
 </mat-toolbar>
+
+<mat-menu #appMenu="matMenu" xPosition="before">
+  <ng-template matMenuContent let-name="name">
+    <button mat-menu-item disabled>
+      <span>Logged in as {{username}}</span>
+    </button>
+    <button mat-menu-item (click)="refresh()">
+      <mat-icon>autorenew</mat-icon>
+      <span>Refresh Activities</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </ng-template>
+</mat-menu>

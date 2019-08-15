@@ -7,17 +7,19 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './auth/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AuthService} from './auth/auth.service';
-import {AuthConfig} from './auth/auth.config';
 import {AuthInterceptor} from './auth/auth.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {PwaService} from './pwa/pwa.service';
 import {PwaComponent} from './pwa/pwa.component';
 import {HeaderComponent} from './header/header.component';
 import {StorageModule} from '@ngx-pwa/local-storage';
+import {StravaService} from './search/strava.service';
+import {AuthService} from './auth/auth.service';
+import {AuthConfig} from './auth/auth.config';
+import {PwaService} from './pwa/pwa.service';
+import {AppState} from './app.state';
 
 const appRoutes: Routes = [
   {path: 'search', component: SearchComponent},
@@ -47,11 +49,13 @@ const appRoutes: Routes = [
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: LocationStrategy, useClass: PathLocationStrategy},
+    AppState,
     Location,
     HttpClientModule,
     AuthService,
     AuthConfig,
-    PwaService
+    PwaService,
+    StravaService
   ],
   bootstrap: [AppComponent]
 })

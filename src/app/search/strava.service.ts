@@ -4,6 +4,7 @@ import {forkJoin, Observable, of} from 'rxjs';
 import {Activity} from '../model/activity';
 import {LocalStorage} from '@ngx-pwa/local-storage';
 import {map, mergeMap, switchMap} from 'rxjs/operators';
+import {Athlete} from '../model/athlete';
 
 @Injectable()
 export class StravaService {
@@ -13,13 +14,19 @@ export class StravaService {
   constructor(private http: HttpClient, private localStorage: LocalStorage) {
   }
 
-  public loadMyself(): Observable<any> {
-    return this.http.get('https://www.strava.com/api/v3/athlete');
+  public loadMyself(): Observable<Athlete> {
+    return this.http.get<Athlete>('https://www.strava.com/api/v3/athlete');
   }
 
   public loadMyActivities(): Observable<Activity[]> {
     return forkJoin([this.loadRecentActivities(), this.loadCachedActivities()]).pipe(
       map(data => this.mergeActivities(data[0], data[1])),
+      switchMap(activities => this.cacheActivities(activities))
+    );
+  }
+
+  public refreshMyActivities(): Observable<Activity[]> {
+    return this.loadAllActivities().pipe(
       switchMap(activities => this.cacheActivities(activities))
     );
   }
