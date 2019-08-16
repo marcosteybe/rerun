@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1565897620903,
+  "timestamp": 1565962333245,
   "index": "https://marcosteybe.github.io/rerun/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "https://marcosteybe.github.io/rerun/favicon.ico",
         "https://marcosteybe.github.io/rerun/index.html",
-        "https://marcosteybe.github.io/rerun/main-es2015.bc1b00898e04e7b8ccd4.js",
-        "https://marcosteybe.github.io/rerun/main-es5.62a0244af2c8616fe2c1.js",
+        "https://marcosteybe.github.io/rerun/main-es2015.b29df92e3e3e6b84b85c.js",
+        "https://marcosteybe.github.io/rerun/main-es5.3471d082a5484680cee0.js",
         "https://marcosteybe.github.io/rerun/polyfills-es2015.8419f7db545646fbe91d.js",
         "https://marcosteybe.github.io/rerun/polyfills-es5.cdc05262d1cdcd2c4540.js",
         "https://marcosteybe.github.io/rerun/runtime-es2015.10a1f01eef199006286d.js",
@@ -53,9 +53,9 @@
     "https://marcosteybe.github.io/rerun/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://marcosteybe.github.io/rerun/assets/strava.png": "21c3ddfcf9b6115b3e38164df57bca199ea3c6a5",
     "https://marcosteybe.github.io/rerun/favicon.ico": "f269ada2543fabb5b94b9b3853500127e1aa4325",
-    "https://marcosteybe.github.io/rerun/index.html": "b6c74ca3d9b00815948a90cc361ffb25d677a367",
-    "https://marcosteybe.github.io/rerun/main-es2015.bc1b00898e04e7b8ccd4.js": "c9370134144c31ba31b8cd517f31a30863a1d7b4",
-    "https://marcosteybe.github.io/rerun/main-es5.62a0244af2c8616fe2c1.js": "c3aabf395de8acd56aa11407214ee2547317135e",
+    "https://marcosteybe.github.io/rerun/index.html": "7dd8653760aaec1cbf2dcf78ddabd9afab961187",
+    "https://marcosteybe.github.io/rerun/main-es2015.b29df92e3e3e6b84b85c.js": "5ecf12738f3ad93047e1c90aeb5aef28f990748f",
+    "https://marcosteybe.github.io/rerun/main-es5.3471d082a5484680cee0.js": "575cf33993696e6f8e50eb33f74e453d17baaad3",
     "https://marcosteybe.github.io/rerun/polyfills-es2015.8419f7db545646fbe91d.js": "058203dab4ba87056d6976029ba60fa42e6f75b9",
     "https://marcosteybe.github.io/rerun/polyfills-es5.cdc05262d1cdcd2c4540.js": "14763ce4891bdc3d87cd41d049fcd1f314032eb8",
     "https://marcosteybe.github.io/rerun/runtime-es2015.10a1f01eef199006286d.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
