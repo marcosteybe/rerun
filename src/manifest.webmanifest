@@ -2,7 +2,7 @@
   "name": "reRun",
   "short_name": "reRun",
   "theme_color": "#E64A19",
-  "background_color": "#ffffff",
+  "background_color": "#FF5722",
   "display": "standalone",
   "scope": "/",
   "start_url": "./",
