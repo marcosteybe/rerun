@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1566248351326,
+  "timestamp": 1566249938659,
   "index": "https://marcosteybe.github.io/rerun/index.html",
   "assetGroups": [
     {
@@ -41,11 +41,11 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_128.png": "a6e7d517ec411d9a1ab031ef8ce5fbc7387d420a",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_192.png": "d7a24f1e249648aa1ad0ba5a6ef7fa45a0a57c61",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_128.png": "4016c0a5a8b04d4d72b02eb2e72da21059095092",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_192.png": "8270f34361b95137492c6a0fca591b6cdbf7c9b0",
     "https://marcosteybe.github.io/rerun/assets/icons/rerun_32.png": "14fc0602c9ca8bcf90dc12eef63cf50167c05fe1",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_512.png": "86af2ef6d7a80c2741f15a7ad38c62b25cd35b25",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_72.png": "981b9de88cd35d2a09226d2166093b8486db279b",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_512.png": "e41e7da817b5f2ad069a1eedc9d45bdefe2b0aca",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_72.png": "69fa196f3372bfff92a68d732e6f9f5170a8b54b",
     "https://marcosteybe.github.io/rerun/assets/icons/rerun_white.png": "4dbb46edc14a12a71a2f4ea89006bb8429e82187",
     "https://marcosteybe.github.io/rerun/assets/strava.png": "21c3ddfcf9b6115b3e38164df57bca199ea3c6a5",
     "https://marcosteybe.github.io/rerun/favicon.png": "bd8085fd46457786785386c6be33dccbf7634bc4",
