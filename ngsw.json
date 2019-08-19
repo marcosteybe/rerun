@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1566164073036,
+  "timestamp": 1566248351326,
   "index": "https://marcosteybe.github.io/rerun/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "https://marcosteybe.github.io/rerun/favicon.png",
         "https://marcosteybe.github.io/rerun/index.html",
-        "https://marcosteybe.github.io/rerun/main-es2015.b29df92e3e3e6b84b85c.js",
-        "https://marcosteybe.github.io/rerun/main-es5.3471d082a5484680cee0.js",
+        "https://marcosteybe.github.io/rerun/main-es2015.9b7eb1ceb13b468ab640.js",
+        "https://marcosteybe.github.io/rerun/main-es5.7fc074d48e3444572f1d.js",
         "https://marcosteybe.github.io/rerun/polyfills-es2015.8419f7db545646fbe91d.js",
         "https://marcosteybe.github.io/rerun/polyfills-es5.cdc05262d1cdcd2c4540.js",
         "https://marcosteybe.github.io/rerun/runtime-es2015.10a1f01eef199006286d.js",
@@ -26,10 +26,11 @@
       "updateMode": "prefetch",
       "urls": [
         "https://marcosteybe.github.io/rerun/assets/icons/rerun_128.png",
+        "https://marcosteybe.github.io/rerun/assets/icons/rerun_192.png",
         "https://marcosteybe.github.io/rerun/assets/icons/rerun_32.png",
         "https://marcosteybe.github.io/rerun/assets/icons/rerun_512.png",
         "https://marcosteybe.github.io/rerun/assets/icons/rerun_72.png",
-        "https://marcosteybe.github.io/rerun/assets/icons/rerun_720.png",
+        "https://marcosteybe.github.io/rerun/assets/icons/rerun_white.png",
         "https://marcosteybe.github.io/rerun/assets/strava.png"
       ],
       "patterns": [
@@ -40,16 +41,17 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_128.png": "9aa7715636ced29f834d282712655455bb279cf1",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_32.png": "ea76bf69f352ad85ff913c92740733d51eede33d",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_512.png": "221ca1ead52188e3f70f20c053d5ccd4e78935fa",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_72.png": "73472ab4bcab48eba6a1166e30875003df7b0247",
-    "https://marcosteybe.github.io/rerun/assets/icons/rerun_720.png": "483664e9219e0fcf68c9e467352b2d0e871cde9d",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_128.png": "a6e7d517ec411d9a1ab031ef8ce5fbc7387d420a",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_192.png": "d7a24f1e249648aa1ad0ba5a6ef7fa45a0a57c61",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_32.png": "14fc0602c9ca8bcf90dc12eef63cf50167c05fe1",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_512.png": "86af2ef6d7a80c2741f15a7ad38c62b25cd35b25",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_72.png": "981b9de88cd35d2a09226d2166093b8486db279b",
+    "https://marcosteybe.github.io/rerun/assets/icons/rerun_white.png": "4dbb46edc14a12a71a2f4ea89006bb8429e82187",
     "https://marcosteybe.github.io/rerun/assets/strava.png": "21c3ddfcf9b6115b3e38164df57bca199ea3c6a5",
     "https://marcosteybe.github.io/rerun/favicon.png": "bd8085fd46457786785386c6be33dccbf7634bc4",
-    "https://marcosteybe.github.io/rerun/index.html": "b83e55ee8fd41f08ea2a367db3adda7f997e6310",
-    "https://marcosteybe.github.io/rerun/main-es2015.b29df92e3e3e6b84b85c.js": "5ecf12738f3ad93047e1c90aeb5aef28f990748f",
-    "https://marcosteybe.github.io/rerun/main-es5.3471d082a5484680cee0.js": "575cf33993696e6f8e50eb33f74e453d17baaad3",
+    "https://marcosteybe.github.io/rerun/index.html": "e1abe776ece9cfe1b9d70c2de8be9461adc1cb6c",
+    "https://marcosteybe.github.io/rerun/main-es2015.9b7eb1ceb13b468ab640.js": "d2261e90c76ed75b1a360332a257826fdfa63255",
+    "https://marcosteybe.github.io/rerun/main-es5.7fc074d48e3444572f1d.js": "a25860f45b4462e8fcf922af0376a1e437126064",
     "https://marcosteybe.github.io/rerun/polyfills-es2015.8419f7db545646fbe91d.js": "058203dab4ba87056d6976029ba60fa42e6f75b9",
     "https://marcosteybe.github.io/rerun/polyfills-es5.cdc05262d1cdcd2c4540.js": "14763ce4891bdc3d87cd41d049fcd1f314032eb8",
     "https://marcosteybe.github.io/rerun/runtime-es2015.10a1f01eef199006286d.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
