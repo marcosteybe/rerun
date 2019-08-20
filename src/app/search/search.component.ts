@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatSortable, MatTableDataSource} from '@angular/material';
 import {StravaService} from './strava.service';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
@@ -71,9 +71,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
       });
   }
 
-  /**
-   * Set the sort after view init since this component will be able to query its view for the initialized sort.
-   */
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -81,6 +78,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
       switch (column) {
         case 'pace':
           return activity.moving_time / activity.distance;
+        case 'distance_diff':
+          return Math.abs((this.distanceFilterRange[0] + this.distanceFilterRange[1]) / 2 - (activity.distance / 1000));
         default:
           return activity[column];
       }
@@ -130,6 +129,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     console.debug('filtering from', distanceFrom, 'to', distanceTo);
     this.distanceFilterRange = [distanceFrom, distanceTo];
     this.dataSource.filter = FilterCriteria.DISTANCE;
+
+    // set sorting to 'distance_diff'
+    this.dataSource.sort.sort(<MatSortable>{id: 'distance_diff', start: 'asc'});
   }
 
   public filterByLocation(selectedLocation: string) {
