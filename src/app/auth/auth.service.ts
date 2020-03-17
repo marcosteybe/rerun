@@ -21,7 +21,8 @@ export class AuthService {
     return this.http.post(this.authConfig.tokenEndpoint
       + '?client_id=' + this.authConfig.clientId
       + '&client_secret=' + this.authConfig.clientSecret
-      + '&code=' + code, {});
+      + '&code=' + code
+      + '&grant_type=authorization_code', {});
   }
 
   public logout() {
