@@ -132,9 +132,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     console.debug('filtering from', distanceFrom, 'to', distanceTo);
     this.distanceFilterRange = [distanceFrom, distanceTo];
     this.dataSource.filter = FilterCriteria.DISTANCE;
-
-    // set sorting to 'distance_diff'
-    this.dataSource.sort.sort(<MatSortable>{id: 'distance_diff', start: 'asc'});
   }
 
   public filterByLocation(selectedLocation: string) {
