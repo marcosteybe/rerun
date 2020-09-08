@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, MatSortable } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 import {StravaService} from './strava.service';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
@@ -93,7 +93,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   public clearDistanceFilter() {
     this.distanceFilter = null;
-    this.dataSource.data = this.activities;
+    this.distanceFilterRange = [0, Number.MAX_SAFE_INTEGER];
+    this.dataSource.filter = FilterCriteria.DISTANCE;
   }
 
   public filterByDistanceKeyUp(searchTextValue: string) {
@@ -137,19 +138,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
 
   public filterByLocation(selectedLocation: string) {
-    if (selectedLocation == null) {
-      return;
-    }
-
     console.debug('filtering to', selectedLocation);
     this.dataSource.filter = FilterCriteria.LOCATION;
   }
 
   public filterByRunType(selectedRunType: string) {
-    if (selectedRunType == null) {
-      return;
-    }
-
     console.debug('filtering to', selectedRunType);
     this.dataSource.filter = FilterCriteria.RUN_TYPE;
   }
