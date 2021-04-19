@@ -1,8 +1,8 @@
 # re&reg;un
 
-An app providing advanced filtering of your Strava activities. Great for finding those lovely routes you have run before.
+A Progressive Web App providing advanced filtering of your Strava activities. Great for finding those lovely routes you have run before.
 
-See it in action? Go to https://marcosteybe.github.io/rerun/.
+See it in action? Go to https://marcosteybe.github.io/rerun/ and allow the app to read your Strava activities.
 
 ## Developing
 
@@ -14,14 +14,14 @@ Run `npm run build` (or `ng build`) to create a production build of the app. The
 
 #### Branching
 
-I'm using [GitHub Flow](https://guides.github.com/introduction/flow/). Simply create a branch from `master`, work on whatever you want to do, open a pull request and merge back to `master`.
+This project is using [GitHub Flow](https://guides.github.com/introduction/flow/). Simply create a branch from `master`, work on whatever you want to do, open a pull request and merge back to `master`.
 
 #### Updating dependencies to latest versions
 
 ```
 npm i -g npm-check-updates
 ncu -u
-npm install
+npm i
 ```
 
 ## Publishing
